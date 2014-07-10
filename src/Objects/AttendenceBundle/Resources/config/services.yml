@@ -1,0 +1,7 @@
+parameters:
+#    objects_attendence.example.class: Objects\AttendenceBundle\Example
+
+services:
+#    objects_attendence.example:
+#        class: %objects_attendence.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

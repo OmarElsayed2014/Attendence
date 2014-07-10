@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if object %}
+        <a href="{{ path("show_attendence", {"user_id":object.user.id }) }}">List</a>
+    {% endif %}
+{% endblock %}

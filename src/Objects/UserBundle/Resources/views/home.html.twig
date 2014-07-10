@@ -1,0 +1,57 @@
+{% extends "ObjectsUserBundle::base_user.html.twig" %}
+{% block body %}
+    <h1>Home Page For User :</h1>
+    <hr>
+    {% if form is null %}
+    <h1> You finished your work 2day .. See u 2morrow ISA </h1>
+    {% else %}
+        {{ form(form) }}
+    {% endif %}
+{% endblock %}
+
+
+{% block javascripts %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  var geocoder;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+}
+//Get the latitude and the longitude;
+function successFunction(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    codeLatLng(lat, lng)
+}
+
+function errorFunction(){
+    alert("Geocoder failed");
+}
+
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+  }
+
+  function codeLatLng(lat, lng) {
+
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results)
+        if (results[1]) {
+         document.getElementById("form_check_location").value = results[0].formatted_address;
+        } else {
+          alert("No results found");
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+    });
+  }
+  initialize();
+</script>
+
+{% endblock %}
+
+

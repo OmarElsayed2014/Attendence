@@ -1,0 +1,17 @@
+objects_attendence:
+    resource: "@ObjectsAttendenceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@ObjectsUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+objects_admin:
+    resource: "@ObjectsAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+home_page:
+    path:  /
+    defaults: { _controller: ObjectsUserBundle:User:home }
+
+

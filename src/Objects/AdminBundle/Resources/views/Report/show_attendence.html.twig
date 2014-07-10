@@ -1,0 +1,42 @@
+{% extends "ObjectsAdminBundle:General:base_admin.html.twig" %}
+{% block body %}
+<h1> {{ username }} - Attendence</h1>
+    {{ form(form) }}
+
+    {% if attendenceDays is not null  %}
+
+        <h2>Result Data :</h2>
+        <hr>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Stayed More Or Less</th>
+                <th>Working Minutes</th>
+                <th>Total Minutes</th>
+            </tr>
+        {% for result in attendenceDays %}
+
+            <tr>
+                <td style="padding: 5px;"> {{ result.checkin | date('Y/m/d - h:m')}} - {{ result.locationCheckin }}</td>
+                <td style="padding: 5px;"> {{ result.checkout | date('Y/m/d - h:m')}} - {{ result.locationCheckin }}</td>
+                <td> {{ result.plus - result.minus }} Minutes </td>
+                <td> {{ result.noOfHrs }} minutes </td>
+                <td> {{ result.total }} minutes</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <hr>
+        <h2>Summary</h2>
+        <ul>
+            <li>Working Hrs : <a href="">{{ workingHours }}</a></li>
+            <li>Vacation Days: <a href="">{{ vacationDays }}</a></li>
+            <li>Working Days : <a href="">{{ workingDays }}</a></li>
+        </ul>
+
+    {% else %}
+        <hr>
+        <h3>No Attendence !!</h3>
+    {% endif %}
+
+{% endblock %}
